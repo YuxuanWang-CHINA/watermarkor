@@ -1,0 +1,15 @@
+{
+  "name": "watermarker",
+  "version": "1.0.0",
+  "description": "Add watermarker.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "images": "^3.0.2",
+    "jimp": "^0.9.5"
+  }
+}
