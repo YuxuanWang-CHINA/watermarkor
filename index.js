@@ -1,16 +1,21 @@
 const jimp = require('jimp');
-var image
-var overi;
 
-async function beginr() {
-    image = await jimp.read('./abc.jpg');
-    overi = await jimp.read('./over.png');
+//input
+const imageLoaction = './resources/input.jpg'
+const watermarkLocation = './resources/watermark.png'
+const outputLocation = './resources/output.png'
+
+//define
+var images = []
+
+async function myRead(objname,location) {
+    images[objname] = await jimp.read(location)
 }
 
-beginr().then(()=>{
-    image.composite(overi, image.bitmap.width - 220, image.bitmap.height-52)
-    .write('out.png')
-
-    console.log(image.bitmap.width)
+Promise.all([myRead(0,imageLoaction),myRead(1,watermarkLocation)])
+.then(()=>{
+    images[0].composite(images[1], images[0].bitmap.width - images[1].bitmap.width, images[0].bitmap.height - images[1].bitmap.height)
+        .write(outputLocation)
 })
+.catch((e)=>{console.log(e)})
 
