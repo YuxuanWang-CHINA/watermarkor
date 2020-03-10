@@ -7,6 +7,8 @@ const outputLocation = './resources/output.png'
 
 //define
 var images = []
+//images[0] = image
+//images[1] = watermark
 
 async function myRead(objname,location) {
     images[objname] = await jimp.read(location)
@@ -18,4 +20,3 @@ Promise.all([myRead(0,imageLoaction),myRead(1,watermarkLocation)])
         .write(outputLocation)
 })
 .catch((e)=>{console.log(e)})
-
