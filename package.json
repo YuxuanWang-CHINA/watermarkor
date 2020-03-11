@@ -1,5 +1,5 @@
 {
-  "name": "watermarkor",
+  "name": "@yuxuanwang-china/watermarkor",
   "version": "1.0.0",
   "description": "Add watermark.",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/YuxuanWang-CHINA/watermarkor.git"
+    "url": "git://github.com/YuxuanWang-CHINA/watermarkor.git"
   },
   "author": "YuxuanWang-CHINA",
   "license": "MIT",
