@@ -1,7 +1,7 @@
 {
-  "name": "watermarker",
+  "name": "watermarkor",
   "version": "1.0.0",
-  "description": "Add watermarker.",
+  "description": "Add watermark.",
   "main": "index.js",
   "scripts": {
     "test": "node index.js"
