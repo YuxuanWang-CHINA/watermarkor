@@ -1,5 +1,5 @@
 {
-  "name": "@yuxuanwang-china/watermarkor",
+  "name": "watermarkor",
   "version": "1.0.0",
   "description": "Add watermark.",
   "main": "index.js",
@@ -14,5 +14,8 @@
   "license": "MIT",
   "dependencies": {
     "jimp": "^0.9.5"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org"
   }
 }
