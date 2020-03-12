@@ -1,22 +1,25 @@
 const jimp = require('jimp');
 
-//input
-const imageLoaction = './resources/input.jpg'
-const watermarkLocation = './resources/watermark.png'
-const outputLocation = './resources/output.png'
-
-//define
-var images = []
-//images[0] = image
-//images[1] = watermark
-
-async function myRead(objname,location) {
-    images[objname] = await jimp.read(location)
+var watermarkor = function (input1, input2) {
+    //input
+    const imageoLoaction = input1
+    const watermarkLocation = input2
+    var imageo={};
+    var watermark={};
+    jimp.read(imageoLoaction).then(ima => imageo=ima)
+        .then(() => {
+            jimp.read(watermarkLocation).then(ima => watermark = ima)
+            .then(() => {
+                imageo.composite(watermark, imageo.bitmap.width - watermark.bitmap.width, imageo.bitmap.height - watermark.bitmap.height)
+                    .getBuffer(jimp.AUTO,(e,buf)=>{return buf})
+            })
+            .catch((e) => { console.log(e); return e })
+        })
+        .catch((e) => { console.log(e); return e })
 }
 
-Promise.all([myRead(0,imageLoaction),myRead(1,watermarkLocation)])
-.then(()=>{
-    images[0].composite(images[1], images[0].bitmap.width - images[1].bitmap.width, images[0].bitmap.height - images[1].bitmap.height)
-        .write(outputLocation)
-})
-.catch((e)=>{console.log(e)})
+//watermarkor('./resources/input.jpg', './resources/watermark.png')
+
+module.exports = {
+    watermarkor: watermarkor
+}
