@@ -3,7 +3,7 @@ Add watermark.
 
 ## Usage
 ```
-const watermarkor = require('./index.js');
+const watermarkor = require('watermarkor');
 
 watermarkor.watermarkor('input.png', 'watermark.png')
 .then((output)=>{
