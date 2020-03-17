@@ -1,1 +1,1 @@
-declare const a: String;
+export {};
