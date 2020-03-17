@@ -1,6 +1,6 @@
 {
   "name": "watermarkor",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "description": "Add watermark.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
