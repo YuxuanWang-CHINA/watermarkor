@@ -1,8 +1,9 @@
 {
   "name": "watermarkor",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "description": "Add watermark.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "node index.js"
   },
@@ -17,5 +18,14 @@
   },
   "publishConfig": {
     "registry": "http://registry.npmjs.org"
+  },
+  "devDependencies": {
+    "@types/node": "^13.9.1",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "eslint": "^6.8.0",
+    "eslint-config-alloy": "^3.6.0",
+    "prettier": "^1.19.1",
+    "typescript": "^3.8.3"
   }
 }
