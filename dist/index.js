@@ -1,5 +1,4 @@
 "use strict";
-exports.__esModule = true;
 var jimp = require("jimp");
 var watermarkor = function (oimageLocation, watermarkLocation) {
     return new Promise(function (resolve, reject) {
@@ -13,7 +12,5 @@ var watermarkor = function (oimageLocation, watermarkLocation) {
         });
     });
 };
-module.exports = {
-    watermarkor: watermarkor
-};
+module.exports = watermarkor;
 //# sourceMappingURL=index.js.map

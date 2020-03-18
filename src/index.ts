@@ -19,6 +19,4 @@ let watermarkor = function(oimageLocation: string, watermarkLocation: string) {
     });
 };
 
-module.exports = {
-    watermarkor: watermarkor
-};
+export = watermarkor;
