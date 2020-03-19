@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "lib": ["ES2015", "DOM"],
+        "lib": ["ES6", "DOM"],
         "outDir": "./dist",
         "rootDir": "./src",
         "declaration": true,

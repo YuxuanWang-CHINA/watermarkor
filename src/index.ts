@@ -1,7 +1,7 @@
 import * as jimp from 'jimp';
 
 let watermarkor = function(oimageLocation: string, watermarkLocation: string) {
-    return new Promise((resolve, reject) => {
+    return new Promise<Buffer>((resolve, reject) => {
         Promise.all([jimp.read(oimageLocation), jimp.read(watermarkLocation)]).then(
             (imgobj: jimp[]) => {
                 imgobj[0]
