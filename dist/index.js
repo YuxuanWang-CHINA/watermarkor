@@ -1,5 +1,6 @@
 "use strict";
 var jimp = require("jimp");
+var fse = require("fs-extra");
 var readAll = function (imageLocationArray) {
     return new Promise(function (resolve, reject) {
         var re = [];
@@ -34,17 +35,36 @@ var addAll = function (imageJimpArray, watermarkJimp) {
         });
     });
 };
-var watermarkor = function (imagesLocationArray, watermarkLocation) {
+var watermark = function (imagesLocationArray, watermarkLocation) {
     return new Promise(function (resolve, reject) {
         Promise.all([readAll(imagesLocationArray), jimp.read(watermarkLocation)]).then(function (_a) {
             var imageJimpArray = _a[0], watermarkJimp = _a[1];
             addAll(imageJimpArray, watermarkJimp).then(function (res) {
-                console.log(res);
                 return resolve(res);
             });
         });
     });
 };
-watermarkor(['./resources/input1.jpg', './resources/input2.jpg'], './resources/watermark.png');
+var watermarkor = function (imagesLocationArray, watermarkLocation, outputLocationArray) {
+    if (outputLocationArray) {
+        return watermarkToFile(imagesLocationArray, watermarkLocation, outputLocationArray);
+    }
+    else {
+        return watermark(imagesLocationArray, watermarkLocation);
+    }
+};
+var watermarkToFile = function (imagesLocationArray, watermarkLocation, outputLocationArray) {
+    return new Promise(function (resolve, reject) {
+        watermark(imagesLocationArray, watermarkLocation).then(function (res) {
+            for (var i in res) {
+                if (res.hasOwnProperty(i)) {
+                    fse.writeFile(outputLocationArray[i], res[i]).then(function () {
+                        return resolve(true);
+                    });
+                }
+            }
+        });
+    });
+};
 module.exports = watermarkor;
 //# sourceMappingURL=index.js.map

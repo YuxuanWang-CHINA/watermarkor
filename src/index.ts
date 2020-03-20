@@ -1,4 +1,5 @@
 import * as jimp from 'jimp';
+import * as fse from 'fs-extra';
 
 let readAll = function(imageLocationArray: string[]) {
     return new Promise<jimp[]>((resolve, reject) => {
@@ -39,12 +40,12 @@ let addAll = function(imageJimpArray: jimp[], watermarkJimp: jimp) {
     });
 };
 
-let watermarkor = function(imagesLocationArray: string[], watermarkLocation: string) {
+let watermark = function(imagesLocationArray: string[], watermarkLocation: string) {
     return new Promise<Buffer[]>((resolve, reject) => {
         Promise.all([readAll(imagesLocationArray), jimp.read(watermarkLocation)]).then(
             ([imageJimpArray, watermarkJimp]) => {
                 addAll(imageJimpArray, watermarkJimp).then((res) => {
-                    console.log(res);
+                    // console.log(res);
                     return resolve(res);
                 });
             }
@@ -52,6 +53,39 @@ let watermarkor = function(imagesLocationArray: string[], watermarkLocation: str
     });
 };
 
+let watermarkor = function(
+    imagesLocationArray: string[],
+    watermarkLocation: string,
+    outputLocationArray?: string[]
+) {
+    if (outputLocationArray) {
+        return watermarkToFile(imagesLocationArray, watermarkLocation, outputLocationArray);
+    } else {
+        return watermark(imagesLocationArray, watermarkLocation);
+    }
+};
+
+let watermarkToFile = function(
+    imagesLocationArray: string[],
+    watermarkLocation: string,
+    outputLocationArray: string[]
+) {
+    return new Promise<boolean>((resolve, reject) => {
+        watermark(imagesLocationArray, watermarkLocation).then((res: Buffer[]) => {
+            for (let i in res) {
+                if (res.hasOwnProperty(i)) {
+                    fse.writeFile(outputLocationArray[i], res[i]).then(() => {
+                        return resolve(true);
+                    });
+                }
+            }
+        });
+    });
+};
+
 export = watermarkor;
 
-watermarkor(['./resources/input1.jpg', './resources/input2.jpg'], './resources/watermark.png');
+// watermarkor(['./resources/input1.jpg', './resources/input2.jpg'], './resources/watermark.png', [
+//     './resources/o1.jpg',
+//     './resources/o2.jpg'
+// ]);
